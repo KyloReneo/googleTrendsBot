@@ -1,21 +1,27 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
+	"log"
 
 	"github.com/KyloReneo/googleTrendsBot/utils"
-
 )
 
 func main() {
-	var country string 
-	newReader := bufio.NewReader(os.Stdin)
+
+	var country string
+
+	fmt.Println("Specify the country that you want to see it's google trends by entering it's name.")
+	fmt.Print("for example US for Unitedstates: ")
+	_, err := fmt.Scanln(&country)
+	if err != nil {
+		log.Fatalf("Reading the input went wrong due to the original error:\n %v", err)
+	}
 
 	data := utils.ReadGoogleTrends(country)
 	rss := utils.XMLUnmarshal(data)
 
+	fmt.Println("---------------------------------------------------------------------------------------------------------------------------------------")
 	fmt.Printf("Google search trends in %s for today:\n", country)
 	for i := range rss.Channel.Items {
 		rank := (i + 1)
