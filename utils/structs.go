@@ -3,23 +3,23 @@ package utils
 import "encoding/xml"
 
 type RSS struct {
-	XMLName xml.Name
-	Channel *Channel
+	XMLName xml.Name `xml:"rss"`
+	Channel *Channel `xml:"channel"`
 }
 
 type Channel struct {
-	Title string
-	Items []Item
+	Title string `xml:"title"`
+	Items []Item `xml:"item"`
 }
 
 type Item struct {
-	Title     string
-	Link      string
-	Traffic   string
-	NewsItems []NewsItems
+	Title     string      `xml:"title"`
+	Link      string      `xml:"link"`
+	Traffic   string      `xml:"approx_traffic"`
+	NewsItems []NewsItems `xml:"news_item"`
 }
 
 type NewsItems struct {
-	NewsItemTitle string
-	NewsItemLink  string
+	NewsItemTitle string `xml:"news_item_title"`
+	NewsItemLink  string `xml:"news_item_url"`
 }
