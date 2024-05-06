@@ -1,14 +1,17 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 
 	"github.com/KyloReneo/googleTrendsBot/utils"
 
 )
 
 func main() {
-	var country string = "US"
+	var country string 
+	newReader := bufio.NewReader(os.Stdin)
 
 	data := utils.ReadGoogleTrends(country)
 	rss := utils.XMLUnmarshal(data)
